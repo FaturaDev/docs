@@ -66,7 +66,10 @@
             "groups": [
               {
                 "group": "Genel Bakış",
-                "pages": ["user-guide/introduction"]
+                "pages": [
+                  "user-guide/introduction",
+                  "user-guide/use-cases"
+                ]
               },
               {
                 "group": "Kaynaklar",

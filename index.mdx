@@ -1,63 +1,60 @@
 ---
-title: "FaturaDev"
-description: "Tek API ile birden fazla özel entegratör bağlantısını yöneten e-Belge gateway ve orkestrasyon platformu."
+title: "Neden FaturaDev?"
+description: "Yazılım ekipleri için ortak bir e-Belge entegrasyon yüzeyi ve açık sorumluluk sınırı."
 ---
 
-# E-Belge entegrasyonunu tek yüzeyde yönetin
+FaturaDev, her özel entegratör için ayrı bir istemci katmanı kurmak yerine
+müşteri tarafından yetkilendirilen bağlantıları ortak bir geliştirici
+yüzeyinde ele alan çok sağlayıcılı bir **e-Belge Gateway**'dir.
 
-FaturaDev, yazılım ekiplerinin müşterilerine ait özel entegratör bağlantılarını tek bir API ve ortak operasyon modeli üzerinden yönetmesi için tasarlanan çok sağlayıcılı bir e-Belge gateway'idir.
-
-<Warning>
-  FaturaDev bir özel entegratör değildir. GİB'e doğrudan bağlanmaz; mali mühür, e-imza veya XAdES üretmez ve belgeyi GİB'e iletmez. İmzalama ve GİB iletim sorumluluğu müşterinin yetkilendirdiği özel entegratörde kalır.
-</Warning>
-
-## Kabul edilen ürün kapsamı
+## Sorumluluklar baştan ayrılır
 
 <CardGroup cols={2}>
-  <Card title="Tek API, birden fazla bağlantı" icon="code-branch">
-    Bir tüzel kişi için birden fazla özel entegratör bağlantısını ortak sözleşme üzerinden yönetin. Her gönderim açıkça seçilmiş tek bir bağlantıya sabitlenir.
+  <Card title="FaturaDev API" icon="brackets-curly" href="/developers/introduction">
+    Yazılımınızın kullanacağı ortak public sözleşmeyi ve geliştirici
+    dokümantasyonu sınırını inceleyin.
   </Card>
-  <Card title="Dayanıklı toplu kabul" icon="layer-group">
-    Tek istekte 1.000 kayda kadar işi dayanıklı biçimde kabul edin. Kuyruk, her öğeyi sağlayıcının operasyon ve hesap bazlı hız sınırına göre işler.
-  </Card>
-  <Card title="Sağlayıcıdan bağımsız geçmiş" icon="clock-rotate-left">
-    Kalıcılaştırılmış belge, durum, zaman çizelgesi ve izinli artifact kayıtlarını sağlayıcı bağlantısı kapandıktan sonra da API ve arayüzden sorgulayın.
-  </Card>
-  <Card title="Bağlantısız içe aktarma" icon="file-import">
-    XML veya ZIP geçmişini bir sağlayıcı bağlantısı oluşturmadan salt okunur kayıt olarak içe aktarın. İçe aktarılan kayıtlar otomatik olarak yeniden gönderilmez.
+  <Card title="Yetkili özel entegratör" icon="building-shield" href="/getting-started/core-concepts/responsibility-model">
+    Mali imza, GİB iletimi ve sağlayıcı hesabı sorumluluklarının hangi
+    tarafta kaldığını anlayın.
   </Card>
 </CardGroup>
 
-## Nasıl konumlanır?
+## Dokümantasyonu keşfedin
 
-```text
-Müşteri yazılımı veya FaturaDev uygulaması
-                 ↓
-       FaturaDev API ve orkestrasyon
-                 ↓
-  Müşterinin yetkili özel entegratör hesabı
-                 ↓
-       GİB — entegratör sorumluluğunda
-```
-
-FaturaDev ortak veri modelini, dayanıklı kabulü, hız sınırı yönetimini, durum normalizasyonunu ve sorgulanabilir operasyon geçmişini sağlar. Düzenlemeye tabi imzalama ve iletim görevleri bu sınırın dışındadır.
-
-## İlk entegrasyon kapsamı
-
-İlk sağlayıcı çalışmaları Nilvera, e-Platform ve Digital Planet/FIT-Sovos bağlantılarını hedefler. Her bağlantının yayımlanması; resmî API erişimi, test hesabı, yetkilendirme modeli ve doğrulanmış capability sözleşmesine bağlıdır.
-
-<CardGroup cols={3}>
-  <Card title="Entegrasyona hazırlık" icon="rocket" href="/quickstart">
-    Ortam, test hesabı ve ilk iş akışı için hazırlık adımlarını inceleyin.
+<CardGroup cols={2}>
+  <Card title="Ürün yaklaşımı" icon="sparkles" href="/getting-started/key-features">
+    Ortak entegrasyon yüzeyi, yetkilendirme ve public sözleşme ilkelerini
+    öğrenin.
   </Card>
-  <Card title="Marka varlıkları" icon="shapes" href="/project/brand-assets">
-    Kilitli FaturaDev ikonlarını, hash'lerini ve kullanım kurallarını görüntüleyin.
+  <Card title="Temel kavramlar" icon="diagram-project" href="/getting-started/core-concepts/e-document-gateway">
+    e-Belge Gateway'in taraflar arasındaki yerini ve istek yolunu görün.
   </Card>
-  <Card title="GitHub" icon="github" href="https://github.com/FaturaDev">
-    FaturaDev organizasyonunun public repolarına gidin.
+  <Card title="Ürün rehberi" icon="book-open" href="/user-guide/introduction">
+    FaturaDev ürün modelini açıklayan public rehberlere ulaşın.
+  </Card>
+  <Card title="Geliştiriciler" icon="code" href="/developers/introduction">
+    Entegrasyon başlangıç yolunu ve yayımlanmış API kapsamını inceleyin.
   </Card>
 </CardGroup>
 
-<Note>
-  Bu site yalnız yayımlanmış sözleşmeleri belgeler. Henüz yayımlanmamış endpoint, sağlayıcı capability'si veya mevzuat yorumu kullanılabilir özellik olarak değerlendirilmemelidir.
-</Note>
+## FaturaDev kimler için?
+
+- Birden fazla özel entegratörle çalışma ihtiyacını ortak bir sözleşme
+  üzerinden değerlendiren yazılım ekipleri için.
+- Muhasebe, ERP veya SaaS ürününe e-Belge bağlantısı ekleyen geliştiriciler
+  için.
+- FaturaDev ile yetkili özel entegratör arasındaki yasal ve teknik sınırı
+  doğrulamak isteyen ürün, güvenlik ve uyum ekipleri için.
+
+## FaturaDev ne değildir?
+
+FaturaDev bir özel entegratör değildir, GİB'e doğrudan bağlanmaz ve mali
+mühür, e-imza veya XAdES üretmez. Müşterinin özel entegratör hesabını,
+sözleşmesini ya da mevzuata tabi iletim sorumluluğunu devralmaz.
+
+<Warning>
+  Yalnız bu sitede yayımlanan ürün ve API sözleşmeleri kullanılabilir kapsamı
+  oluşturur. Dokümante edilmemiş bir endpoint, sağlayıcı bağlantısı veya
+  e-Belge işlemi mevcut özellik olarak varsayılmamalıdır.
+</Warning>

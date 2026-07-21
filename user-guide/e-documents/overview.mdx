@@ -1,0 +1,58 @@
+---
+title: "e-Belge rehberi"
+description: "e-Fatura, e-Arşiv Fatura ve e-İrsaliye kavramlarını genel düzeyde karşılaştırın."
+icon: "files"
+---
+
+e-Belge, Vergi Usul Kanunu uyarınca düzenlenmesi gereken bir belgedeki
+bilgileri elektronik kayıt olarak taşıyan belge ailesidir. Her e-Belge aynı
+işlevi görmez. Belge seçimi işlemin niteliğine, tarafların kayıt durumuna ve
+güncel mevzuata göre değişir.
+
+<CardGroup cols={2}>
+  <Card title="e-Fatura" icon="file-invoice" href="/user-guide/e-documents/e-invoice">
+    e-Fatura uygulamasına kayıtlı taraflar arasındaki elektronik faturayı tanıyın.
+  </Card>
+  <Card title="e-Arşiv Fatura" icon="file-lines" href="/user-guide/e-documents/e-archive-invoice">
+    e-Fatura dışında kalan elektronik faturanın temel kapsamını anlayın.
+  </Card>
+  <Card title="e-İrsaliye" icon="truck" href="/user-guide/e-documents/e-dispatch">
+    Mal hareketine eşlik eden elektronik sevk irsaliyesini inceleyin.
+  </Card>
+</CardGroup>
+
+## Temel ayrım
+
+| Belge | Genel işlev | Ayırt edici nokta |
+| --- | --- | --- |
+| e-Fatura | Faturayı elektronik ortamda oluşturur ve iletir. | e-Fatura uygulamasına kayıtlı taraflar arasındaki fatura akışıdır. |
+| e-Arşiv Fatura | e-Fatura dışında kalan faturayı elektronik ortamda oluşturur. | Alıcının e-Fatura kayıt durumu, kullanılacak fatura türünün belirlenmesinde temel ayrımdır. |
+| e-İrsaliye | Sevk irsaliyesini elektronik ortamda oluşturur ve iletir. | Faturadan farklı olarak malın fiilî sevkine ilişkin belgedir. |
+
+## FaturaDev'in rolü
+
+FaturaDev bir e-Belge Gateway'dir. Müşteri yazılımı ile müşterinin
+yetkilendirdiği özel entegratör bağlantıları arasında ortak bir entegrasyon
+yüzeyi tanımlar. FaturaDev özel entegratör değildir; GİB'e doğrudan belge
+iletmez ve mali mühür, elektronik imza veya XAdES işlemi gerçekleştirmez.
+
+Bu rehberde bir belge türünün açıklanması, o belge için bir endpoint veya
+sağlayıcı kabiliyetinin yayımlandığı anlamına gelmez. Kullanılabilir işlemler
+yalnız kanonik public API sözleşmesinde yayımlandığında ürün kapsamına girer.
+
+<Warning>
+  Bu sayfalar genel bilgilendirme içindir; vergi veya hukuk danışmanlığı
+  değildir. Mükellefiyetinizi, geçiş tarihinizi ve belge düzenleme
+  yükümlülüğünüzü mali müşavirinizle ve GİB'in güncel kaynaklarıyla doğrulayın.
+</Warning>
+
+## Resmî kaynaklar ve güncellik
+
+- [GİB e-Belge uygulamaları](https://ebelge.gib.gov.tr/anasayfa.html)
+- [Güncel şekliyle 509 Sıra No.lu Vergi Usul Kanunu Genel Tebliği](https://ebelge.gib.gov.tr/dosyalar/tebligler/Dipnotlu_Guncel_Sekli_ile_509_Sira_No%27lu_VUK_Genel_Tebligi.pdf)
+
+<Note>
+  Son doğrulama: 2026-07-22. GİB mevzuatı, kılavuzları ve uygulama koşulları
+  değişebilir. İşlemden önce bağlantılı resmî kaynakların güncel sürümünü
+  kontrol edin.
+</Note>

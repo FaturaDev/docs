@@ -1,0 +1,30 @@
+---
+title: "Sorumluluk modeli"
+description: "FaturaDev ile müşterinin yetkilendirdiği özel entegratörün görevlerini ayırın."
+icon: "building-shield"
+---
+
+FaturaDev bir entegrasyon ve API servis sağlayıcısıdır. Özel entegratör
+değildir ve özel entegratörlere ait mevzuata tabi görevleri üstlenmez.
+
+## Sorumluluk matrisi
+
+| Sorumluluk | FaturaDev | Yetkili özel entegratör |
+| --- | --- | --- |
+| Müşteri yazılımı için ortak API sözleşmesi | Evet | Sağlayıcıya özgü olabilir |
+| Özel entegratör hesabı ve ticari sözleşme | Hayır | Evet |
+| Mali mühür, e-imza veya XAdES | Hayır | Yetkili hizmet kapsamında |
+| GİB'e doğrudan belge iletimi | Hayır | Yetkili hizmet kapsamında |
+| Desteklenen operasyonların public sözleşmesi | FaturaDev API için | Sağlayıcı API'si için |
+
+## Yetkilendirme
+
+Bağlantı, müşterinin açıkça yetkilendirdiği özel entegratör hesabı ve
+kapsamla sınırlıdır. FaturaDev müşterinin mali mührünü veya özel imza
+anahtarını almaz.
+
+## Sağlayıcı sözleşmesi
+
+Müşterinin özel entegratör seçimi, hesabı ve ticari ilişkisi FaturaDev
+tarafından devralınmaz. Sağlayıcının test veya canlı ortam erişim koşulları
+için o sağlayıcının resmî ve güncel public kanalları esas alınır.

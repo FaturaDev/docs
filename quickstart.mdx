@@ -1,52 +1,44 @@
 ---
-title: "Entegrasyona hazırlık"
-description: "FaturaDev erişimi açılmadan önce test ortamı, sağlayıcı bağlantısı ve toplu işlem modelini hazırlayın."
+title: "Hızlı başlangıç"
+description: "FaturaDev entegrasyonunu değerlendirirken izlemeniz gereken public dokümantasyon yolunu takip edin."
+icon: "play"
 ---
 
-# Entegrasyona hazırlık
+FaturaDev entegrasyonuna başlamadan önce ürün sınırını ve kullanacağınız
+public API sözleşmesini doğrulayın. Bir özel entegratör bağlantısı
+kullanacaksanız müşterinizin yetkilendirmesini de bu değerlendirmeye ekleyin.
 
-Bu sayfa, FaturaDev API erişimi açıldığında ilk sandbox akışını güvenli biçimde çalıştırabilmeniz için gereken hazırlıkları açıklar. Yayımlanmış OpenAPI sözleşmesi bulunmayan endpoint veya payload'ları tahmin etmeyin.
+## 1. Ürün modelini anlayın
 
-<Warning>
-  FaturaDev hesabı, özel entegratör hesabının yerine geçmez. Test ve production erişim bilgilerini ilgili özel entegratör kendi yetkilendirme sürecine göre sağlar.
-</Warning>
+[Ürün yaklaşımı](/getting-started/key-features) sayfasından ortak
+entegrasyon yüzeyinin amacını inceleyin. Ardından
+[e-Belge Gateway](/getting-started/core-concepts/e-document-gateway) kavramıyla
+FaturaDev'in istek yolundaki yerini doğrulayın.
 
-## Ön koşullar
+## 2. Sorumluluk sınırını doğrulayın
 
-- Entegrasyonu yapacak yazılım ve sorumlu teknik ekip,
-- yalnız sentetik veri kullanılacak bir test senaryosu,
-- bağlanılacak özel entegratörden alınmış test hesabı ve izin verilen capability bilgisi,
-- test edilecek tüzel kişi ile sağlayıcı hesabı arasındaki yetkinin doğrulanması,
-- asenkron sonuçları işleyecek sorgulama veya webhook tasarımı.
+[Sorumluluk modeli](/getting-started/core-concepts/responsibility-model),
+FaturaDev ile müşterinin yetkilendirdiği özel entegratörün görevlerini ayırır.
+Mali imza, GİB iletimi ve özel entegratör hesabı FaturaDev'e taşınmaz.
 
-## İlk akış
+## 3. Yalnız yayımlanmış sözleşmeyi kullanın
 
-<Steps>
-  <Step title="Sandbox sınırını belirleyin">
-    FaturaDev sandbox workspace'ini yalnız sağlayıcının test ortamına bağlayın. Test credential'ını production ortamında, production credential'ını sandbox ortamında kullanmayın.
-  </Step>
-  <Step title="Sağlayıcı bağlantısını doğrulayın">
-    Bir tüzel kişi için bir veya daha fazla özel entegratör bağlantısı tanımlanabilir. Her bağlantının ortamını, hesap sahibini ve desteklediği e-Belge capability'lerini ayrı ayrı doğrulayın.
-  </Step>
-  <Step title="Sentetik belge hazırlayın">
-    Gerçek VKN/TCKN, kişi bilgisi, adres, fatura, XML, PDF veya provider referansı kullanmayın. Örneğin format göstermesi gereken alanlarda `VKN_EXAMPLE_NOT_VALID` ve `document-0001@example.com` gibi açıkça geçersiz sentetik değerler kullanın.
-  </Step>
-  <Step title="İdempotency ve batch davranışını planlayın">
-    Aynı iş tekrarlandığında duplicate üretmeyecek bir idempotency anahtarı belirleyin. Bir batch 1.000 öğeye kadar dayanıklı biçimde kabul edilebilir; her öğe kendi durumuna ve hedef bağlantısının hız sınırına göre ilerler.
-  </Step>
-  <Step title="Kabul ile iletimi ayırın">
-    API'nin dayanıklı kabul cevabı, özel entegratör veya GİB kabulü değildir. Yayımlanacak OpenAPI sözleşmesindeki öğe bazlı durum ve olay akışından nihai sonucu izleyin.
-  </Step>
-</Steps>
+Bir API operasyonunu ancak bu sitedeki kanonik API referansında yer aldığında
+kullanılabilir kabul edin. Henüz yayımlanmamış endpoint, payload, kimlik
+doğrulama yöntemi, kota veya sağlayıcı kabiliyeti hakkında varsayım yapmayın.
 
-## Geçmiş veriyle başlama
+## Sonraki adımlar
 
-Mevcut XML veya ZIP arşiviniz varsa bunları sağlayıcı bağlantısından bağımsız, salt okunur geçmiş olarak içe aktarabilirsiniz. İçe aktarılan kaydın kaynağı korunur; kayıt otomatik gönderime açılmaz. Yeni bir gönderim gerekiyorsa ayrı bir taslak oluşturulur.
-
-## Sonraki adım
-
-API kimlik doğrulama modeli, endpoint'ler, örnek payload'lar ve hata sözleşmesi yalnız kanonik OpenAPI sürümü yayımlandığında bu sitedeki API referansına eklenecektir.
+<CardGroup cols={2}>
+  <Card title="Ürün rehberini açın" icon="book-open" href="/user-guide/introduction">
+    Public ürün açıklamalarını tek bir başlangıç sayfasından keşfedin.
+  </Card>
+  <Card title="Geliştirici merkezini açın" icon="brackets-curly" href="/developers/introduction">
+    Entegrasyon belgelerini ve API yayın sınırını inceleyin.
+  </Card>
+</CardGroup>
 
 <Note>
-  Sağlayıcı test hesabı, capability veya ortam adresi hakkında güncel bilgi için ilgili sağlayıcının resmî kanalını kullanın. Doğrulanmamış portal ekranlarını veya üçüncü taraf örneklerini production sözleşmesi olarak kabul etmeyin.
+  Bir özel entegratörün test hesabı veya bağlantı koşulları için yalnız o
+  sağlayıcının resmî ve güncel public kanallarını kullanın.
 </Note>

@@ -2,6 +2,5 @@
 # .git, .github, .claude, .agents, .idea, node_modules,
 # README.md, LICENSE.md, CHANGELOG.md, CONTRIBUTING.md
 
-# Draft content
-drafts/
-*.draft.mdx
+# Tracked drafts are intentionally not ignored. Every tracked MDX file is public
+# and must be present in docs.json navigation.

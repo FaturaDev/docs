@@ -1,0 +1,41 @@
+---
+title: "e-Belge Gateway"
+description: "FaturaDev'in müşteri yazılımı ile yetkili özel entegratör arasındaki yerini anlayın."
+icon: "diagram-project"
+---
+
+e-Belge Gateway, müşteri yazılımı ile müşterinin yetkilendirdiği özel
+entegratör bağlantıları arasında ortak bir geliştirici sözleşmesi sunan
+yazılım katmanıdır.
+
+## Taraflar
+
+| Taraf | Rol |
+| --- | --- |
+| Müşteri yazılımı | FaturaDev'in yayımlanmış public API sözleşmesini kullanır. |
+| FaturaDev | Ortak e-Belge entegrasyon yüzeyini tanımlar. |
+| Yetkili özel entegratör | Kendi GİB yetkisi ve müşteri sözleşmesi kapsamında mevzuata tabi iletimi yürütür. |
+| GİB | e-Belge sistemlerinin yetkili kamu otoritesidir; FaturaDev GİB'e doğrudan bağlanmaz. |
+
+## İstek yolu
+
+```text
+Müşteri yazılımı
+      ↓
+FaturaDev public API
+      ↓
+Müşterinin yetkilendirdiği özel entegratör bağlantısı
+      ↓
+GİB — özel entegratörün sorumluluk alanı
+```
+
+## Gateway sınırı
+
+Gateway tanımı, FaturaDev'i özel entegratör yapmaz. FaturaDev mali mühür,
+e-imza veya XAdES üretmez; GİB'e doğrudan belge iletmez ve müşterinin özel
+entegratör hesabının yerini almaz.
+
+<Note>
+  Teknik bir işlemin kullanılabilirliğini kavram tanımından değil, bu sitede
+  yayımlanan kanonik API sözleşmesinden doğrulayın.
+</Note>

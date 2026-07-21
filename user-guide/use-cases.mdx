@@ -1,0 +1,63 @@
+---
+title: "Kullanım senaryoları"
+description: "FaturaDev'in muhasebe, ERP, SaaS ve platform ürünlerindeki uygun kullanım bağlamlarını değerlendirin."
+icon: "layer-group"
+---
+
+FaturaDev, müşterinin yetkilendirdiği özel entegratör bağlantılarını ortak bir
+public geliştirici sözleşmesi üzerinden ele almak isteyen yazılım ekipleri
+içindir. Uygunluk değerlendirmesinde ürünün entegrasyon sınırını ve mevzuata
+tabi görevlerin hangi tarafta kaldığını birlikte inceleyin.
+
+## Uygun kullanım bağlamları
+
+<CardGroup cols={2}>
+  <Card title="Muhasebe ve ERP ürünleri" icon="calculator">
+    Müşterilerin e-Belge bağlantılarını ürününüzde ortak bir entegrasyon
+    yüzeyiyle değerlendirin.
+  </Card>
+  <Card title="SaaS ve iş uygulamaları" icon="cloud">
+    e-Belge entegrasyonunu sağlayıcıya özgü istemci katmanlarından ayıran bir
+    ürün sınırı tanımlayın.
+  </Card>
+  <Card title="Platform ekipleri" icon="layer-group">
+    Birden fazla müşteri veya özel entegratör bağlantısını aynı public sözleşme
+    çerçevesinde ele alın.
+  </Card>
+</CardGroup>
+
+## Değerlendirme ölçütleri
+
+| Konu | FaturaDev yaklaşımı |
+| --- | --- |
+| Entegrasyon hedefi | Müşterinin yetkilendirdiği özel entegratör bağlantısıdır. |
+| Yazılım sınırı | Yalnız yayımlanmış FaturaDev ürün ve API sözleşmesidir. |
+| Mevzuata tabi iletim | Yetkili özel entegratörün hizmet kapsamında kalır. |
+| Ürün kullanılabilirliği | Yalnız public dokümantasyonda yayımlanan kabiliyetlerle sınırlıdır. |
+
+## Uygun olmayan beklentiler
+
+FaturaDev aşağıdaki ihtiyaçların yerine geçmez:
+
+- GİB'e doğrudan bağlanan bir özel entegratör hizmeti,
+- mali mühür, e-imza veya XAdES üretimi,
+- müşterinin özel entegratör hesabının veya ticari sözleşmesinin devralınması,
+- dokümante edilmemiş endpoint, sağlayıcı bağlantısı veya e-Belge işlemi.
+
+<Warning>
+  Bir kullanım senaryosunun bu sayfada açıklanması, belirli bir endpoint'in,
+  sağlayıcı bağlantısının veya e-Belge işleminin kullanılabilir olduğu anlamına
+  gelmez. Yalnız yayımlanmış FaturaDev sözleşmesini esas alın.
+</Warning>
+
+## Sonraki adım
+
+<CardGroup cols={2}>
+  <Card title="Hızlı başlangıç" icon="play" href="/quickstart">
+    Ürün sınırından geliştirici dokümantasyonuna uzanan değerlendirme yolunu
+    izleyin.
+  </Card>
+  <Card title="Sorumluluk modeli" icon="building-shield" href="/getting-started/core-concepts/responsibility-model">
+    FaturaDev ile yetkili özel entegratörün görevlerini karşılaştırın.
+  </Card>
+</CardGroup>

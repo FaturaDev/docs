@@ -78,7 +78,10 @@
                   "user-guide/e-documents/overview",
                   "user-guide/e-documents/e-invoice",
                   "user-guide/e-documents/e-archive-invoice",
-                  "user-guide/e-documents/e-dispatch"
+                  "user-guide/e-documents/e-dispatch",
+                  "user-guide/e-documents/e-self-employment-receipt",
+                  "user-guide/e-documents/e-producer-receipt",
+                  "user-guide/e-documents/e-ticket"
                 ]
               }
             ]

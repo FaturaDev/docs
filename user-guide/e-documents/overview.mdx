@@ -1,6 +1,6 @@
 ---
 title: "e-Belge rehberi"
-description: "e-Fatura, e-Arşiv Fatura ve e-İrsaliye kavramlarını genel düzeyde karşılaştırın."
+description: "Fatura, irsaliye, makbuz ve bilet türündeki yaygın e-Belgeleri genel düzeyde karşılaştırın."
 icon: "files"
 ---
 
@@ -19,6 +19,15 @@ güncel mevzuata göre değişir.
   <Card title="e-İrsaliye" icon="truck" href="/user-guide/e-documents/e-dispatch">
     Mal hareketine eşlik eden elektronik sevk irsaliyesini inceleyin.
   </Card>
+  <Card title="e-Serbest Meslek Makbuzu" icon="receipt" href="/user-guide/e-documents/e-self-employment-receipt">
+    Serbest meslek tahsilatlarında düzenlenen elektronik makbuzu tanıyın.
+  </Card>
+  <Card title="e-Müstahsil Makbuzu" icon="wheat-awn" href="/user-guide/e-documents/e-producer-receipt">
+    Çiftçiden yapılan belirli mal alımlarında kullanılan elektronik makbuzu öğrenin.
+  </Card>
+  <Card title="e-Bilet" icon="ticket" href="/user-guide/e-documents/e-ticket">
+    Yolcu ve etkinlik biletlerinin elektronik biçimini inceleyin.
+  </Card>
 </CardGroup>
 
 ## Temel ayrım
@@ -28,6 +37,9 @@ güncel mevzuata göre değişir.
 | e-Fatura | Faturayı elektronik ortamda oluşturur ve iletir. | e-Fatura uygulamasına kayıtlı taraflar arasındaki fatura akışıdır. |
 | e-Arşiv Fatura | e-Fatura dışında kalan faturayı elektronik ortamda oluşturur. | Alıcının e-Fatura kayıt durumu, kullanılacak fatura türünün belirlenmesinde temel ayrımdır. |
 | e-İrsaliye | Sevk irsaliyesini elektronik ortamda oluşturur ve iletir. | Faturadan farklı olarak malın fiilî sevkine ilişkin belgedir. |
+| e-Serbest Meslek Makbuzu | Serbest meslek erbabının mesleki faaliyet tahsilatını belgeler. | Fatura veya sevk belgesi değil, serbest meslek makbuzunun elektronik biçimidir. |
+| e-Müstahsil Makbuzu | Gerçek usulde vergiye tabi olmayan çiftçiden belirli mal alımlarını belgeler. | Bu işlemlerde fatura yerine geçen müstahsil makbuzunun elektronik biçimidir. |
+| e-Bilet | Yolcu veya etkinlik biletini elektronik ortamda düzenler. | İşlemin türüne göre bilet ve ilgili yolcu listesi kuralları birlikte uygulanabilir. |
 
 ## FaturaDev'in rolü
 
@@ -49,7 +61,7 @@ yalnız kanonik public API sözleşmesinde yayımlandığında ürün kapsamına
 ## Resmî kaynaklar ve güncellik
 
 - [GİB e-Belge uygulamaları](https://ebelge.gib.gov.tr/anasayfa.html)
-- [Güncel şekliyle 509 Sıra No.lu Vergi Usul Kanunu Genel Tebliği](https://ebelge.gib.gov.tr/dosyalar/tebligler/Dipnotlu_Guncel_Sekli_ile_509_Sira_No%27lu_VUK_Genel_Tebligi.pdf)
+- [Güncel şekliyle 509 Sıra No.lu Vergi Usul Kanunu Genel Tebliği](https://ebelge.gib.gov.tr/dosyalar/tebligler/Guncel_Sekli_ile_509_Sira_No%27lu_VUK_Genel_Tebligi.pdf)
 
 <Note>
   Son doğrulama: 2026-07-22. GİB mevzuatı, kılavuzları ve uygulama koşulları

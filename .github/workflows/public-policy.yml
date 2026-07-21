@@ -1,0 +1,82 @@
+name: Public documentation policy
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-policy-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  public-policy:
+    name: public-policy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+
+      - name: Validate public configuration and brand lock
+        shell: bash
+        run: |
+          set -euo pipefail
+          empty_tree="$(git hash-object -t tree /dev/null)"
+          git diff --check "$empty_tree" HEAD
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import pathlib
+          import struct
+          import xml.etree.ElementTree as ET
+
+          root = pathlib.Path(".")
+          config = json.loads((root / "docs.json").read_text())
+
+          expected = {
+              "images/brand/fatura-type.svg": "e08df29bec6b380442734d24baec26f07848b3d5e347036f3fb874f1226359fa",
+              "images/brand/fatura-icon.png": "96f8e0b74f1c325bcd2a58ee52ce54b4dda04d9664e8401f4ae3cf490c6d6385",
+              "images/brand/brand-assets.json": "7a80fe333715f75a940c3664f70cfcf9a0e67efb17fcd156a334a21cc16e6ec1",
+          }
+          for name, digest in expected.items():
+              actual = hashlib.sha256((root / name).read_bytes()).hexdigest()
+              if actual != digest:
+                  raise SystemExit(f"Brand lock mismatch: {name}")
+
+          svg = (root / "images/brand/fatura-type.svg").read_text()
+          lowered = svg.lower()
+          forbidden = ("<script", "<foreignobject", "<iframe", "<embed", "<object", "<image", "xlink:href", "@import", "url(")
+          if any(token in lowered for token in forbidden):
+              raise SystemExit("Unsafe SVG construct detected")
+          ET.fromstring(svg)
+
+          png = (root / "images/brand/fatura-icon.png").read_bytes()
+          if png[:8] != b"\x89PNG\r\n\x1a\n":
+              raise SystemExit("Invalid PNG signature")
+          width, height = struct.unpack(">II", png[16:24])
+          if (width, height) != (1024, 1024):
+              raise SystemExit("Unexpected PNG dimensions")
+
+          pages = []
+          for group in config["navigation"]["pages"]:
+              pages.extend(group.get("pages", []))
+          for page in pages:
+              if not (root / f"{page}.mdx").is_file():
+                  raise SystemExit(f"Missing navigation page: {page}.mdx")
+          PY
+
+      - name: Reject obvious public-repository secrets
+        shell: bash
+        run: |
+          set -euo pipefail
+          if find . -type f \
+            -not -path './.git/*' \
+            \( -name '.env' -o -name '*.pem' -o -name '*.key' -o -name '*.p12' \) \
+            -print -quit | grep -q .; then
+            echo "Forbidden secret-bearing file type detected." >&2
+            exit 1
+          fi

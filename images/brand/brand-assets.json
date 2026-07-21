@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "brandVersion": "1.0.0",
+  "status": "LOCKED",
+  "lockedAt": "2026-07-21",
+  "canonicalRepository": "FaturaDev/docs",
+  "canonicalPath": "images/brand",
+  "assets": [
+    {
+      "file": "fatura-type.svg",
+      "mediaType": "image/svg+xml",
+      "bytes": 2292,
+      "width": 356,
+      "height": 656,
+      "sha256": "e08df29bec6b380442734d24baec26f07848b3d5e347036f3fb874f1226359fa",
+      "role": "canonical-vector-mark",
+      "immutable": true
+    },
+    {
+      "file": "fatura-icon.png",
+      "mediaType": "image/png",
+      "bytes": 15012,
+      "width": 1024,
+      "height": 1024,
+      "colorMode": "RGBA",
+      "sha256": "96f8e0b74f1c325bcd2a58ee52ce54b4dda04d9664e8401f4ae3cf490c6d6385",
+      "role": "canonical-square-icon",
+      "immutable": true
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+---
+title: "Ürün yaklaşımı"
+description: "FaturaDev'in ortak entegrasyon yüzeyi, yetkilendirme ve public sözleşme ilkelerini anlayın."
+icon: "sparkles"
+---
+
+FaturaDev, e-Belge entegrasyonunu yazılım ekipleri için ortak bir geliştirici
+yüzeyinde ele alır. Bu yaklaşım, özel entegratörün mevzuata tabi görevlerini
+veya müşteri hesabını FaturaDev'e taşımaz.
+
+## Ortak entegrasyon yüzeyi
+
+Müşteri yazılımı, yalnız FaturaDev tarafından public olarak yayımlanan API
+sözleşmesini esas alır. Sağlayıcıya özgü operasyonlar, FaturaDev sözleşmesinde
+yer almadıkça ortak bir özellik olarak kabul edilmez.
+
+## Müşteri tarafından yetkilendirilen bağlantı
+
+Bir özel entegratör bağlantısı kullanıldığında FaturaDev yalnız müşterinin
+yetkilendirdiği hesap ve kapsamla çalışır. Özel entegratör hesabı ve ticari
+sözleşme müşteri ile sağlayıcı arasında kalır.
+
+## Açık sorumluluk sınırı
+
+FaturaDev ortak API sözleşmesini tanımlar. Mali mühür, e-imza, XAdES, GİB
+iletimi ve özel entegratör yetkisi ise müşterinin seçtiği özel entegratörün
+hizmet kapsamında kalır.
+
+## Public sözleşme kaynak kabul edilir
+
+Desteklenen operasyonlar, e-Belge türleri, sağlayıcı bağlantıları ve ortamlar
+yalnız public ürün ya da API dokümanında yer aldığında kullanılabilir kapsamı
+oluşturur.
+
+<Warning>
+  Bu sayfa bir endpoint, payload, kota, sağlayıcı veya e-Belge operasyonu
+  yayımlamaz. Teknik entegrasyonda yalnız kanonik API referansını kullanın.
+</Warning>

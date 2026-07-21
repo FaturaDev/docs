@@ -1,56 +1,60 @@
 ---
-title: "FaturaDev API"
-description: "Yazılımınız ile müşterinizin yetkili özel entegratörü arasındaki e-Belge entegrasyonunu tek bir geliştirici yüzeyinde yönetin."
+title: "Neden FaturaDev?"
+description: "Yazılım ekipleri için ortak bir e-Belge entegrasyon yüzeyi ve açık sorumluluk sınırı."
 ---
 
-## E-Belge entegrasyonunda iki ayrı sorumluluk alanı
+FaturaDev, her özel entegratör için ayrı bir istemci katmanı kurmak yerine
+müşteri tarafından yetkilendirilen bağlantıları ortak bir geliştirici
+yüzeyinde ele alan çok sağlayıcılı bir **e-Belge Gateway**'dir.
 
-FaturaDev, yazılım ekipleri için ortak bir e-Belge API yüzeyi sunar. Mali imza,
-GİB iletimi ve özel entegratör yükümlülükleri ise müşterinin yetkilendirdiği özel
-entegratörde kalır.
+## Sorumluluklar baştan ayrılır
 
 <CardGroup cols={2}>
-  <Card title="FaturaDev API" icon="brackets-curly" href="/quickstart">
-    Yazılımınızın e-Belge işlemleri için kullanacağı ortak entegrasyon yüzeyini
-    ve ürün sınırını inceleyin.
+  <Card title="FaturaDev API" icon="brackets-curly" href="/developers/introduction">
+    Yazılımınızın kullanacağı ortak public sözleşmeyi ve geliştirici
+    dokümantasyonu sınırını inceleyin.
   </Card>
-  <Card title="Özel entegratör bağlantısı" icon="building-shield" href="/quickstart">
-    Mali imza, GİB iletimi ve sağlayıcı hesabının hangi tarafta kaldığını
-    anlayın.
+  <Card title="Yetkili özel entegratör" icon="building-shield" href="/getting-started/core-concepts/responsibility-model">
+    Mali imza, GİB iletimi ve sağlayıcı hesabı sorumluluklarının hangi
+    tarafta kaldığını anlayın.
   </Card>
 </CardGroup>
 
-## Nereden başlamalısınız?
+## Dokümantasyonu keşfedin
 
 <CardGroup cols={2}>
-  <Card title="Entegrasyon modelini inceleyin" icon="rocket" href="/quickstart">
-    FaturaDev, müşteri yazılımı ve özel entegratör arasındaki sorumluluk
-    sınırlarını öğrenin.
+  <Card title="Ürün yaklaşımı" icon="sparkles" href="/getting-started/key-features">
+    Ortak entegrasyon yüzeyi, yetkilendirme ve public sözleşme ilkelerini
+    öğrenin.
   </Card>
-  <Card title="API yayınını takip edin" icon="code" href="/quickstart">
-    Yayımlanmış API sözleşmesinin hangi bilgileri sağlayacağını görün.
+  <Card title="Temel kavramlar" icon="diagram-project" href="/getting-started/core-concepts/e-document-gateway">
+    e-Belge Gateway'in taraflar arasındaki yerini ve istek yolunu görün.
   </Card>
-  <Card title="Marka varlıklarını indirin" icon="shapes" href="/project/brand-assets">
-    FaturaDev'in resmî ikonlarına ve public kullanım kurallarına ulaşın.
+  <Card title="Ürün rehberi" icon="book-open" href="/user-guide/introduction">
+    FaturaDev ürün modelini açıklayan public rehberlere ulaşın.
   </Card>
-  <Card title="GitHub organizasyonunu açın" icon="github" href="https://github.com/FaturaDev">
-    FaturaDev'in public GitHub organizasyonunu görüntüleyin.
+  <Card title="Geliştiriciler" icon="code" href="/developers/introduction">
+    Entegrasyon başlangıç yolunu ve yayımlanmış API kapsamını inceleyin.
   </Card>
 </CardGroup>
 
-## Tek geliştirici yüzeyi, ayrılmış yasal sorumluluklar
+## FaturaDev kimler için?
 
-Müşteri yazılımı FaturaDev API ile konuşur. FaturaDev, yalnız müşterinin
-yetkilendirdiği özel entegratör bağlantısı üzerinden çalışır. FaturaDev özel
-entegratör değildir, GİB'e doğrudan bağlanmaz ve mali mühür, e-imza veya XAdES
-üretmez.
+- Birden fazla özel entegratörle çalışma ihtiyacını ortak bir sözleşme
+  üzerinden değerlendiren yazılım ekipleri için.
+- Muhasebe, ERP veya SaaS ürününe e-Belge bağlantısı ekleyen geliştiriciler
+  için.
+- FaturaDev ile yetkili özel entegratör arasındaki yasal ve teknik sınırı
+  doğrulamak isteyen ürün, güvenlik ve uyum ekipleri için.
 
-## Yayımlanmış sözleşmeyi esas alın
+## FaturaDev ne değildir?
 
-API operasyonları, desteklenen e-Belge türleri ve kullanılabilir sağlayıcı
-bağlantıları yalnız public sözleşmeleri yayımlandığında bu sitede listelenir.
+FaturaDev bir özel entegratör değildir, GİB'e doğrudan bağlanmaz ve mali
+mühür, e-imza veya XAdES üretmez. Müşterinin özel entegratör hesabını,
+sözleşmesini ya da mevzuata tabi iletim sorumluluğunu devralmaz.
 
 <Warning>
-  Bu sitede API referansı bulunmayan bir endpoint, payload, sağlayıcı bağlantısı
-  veya capability kullanılabilir ürün özelliği olarak değerlendirilmemelidir.
+  Yalnız bu sitede yayımlanan ürün ve API sözleşmeleri kullanılabilir kapsamı
+  oluşturur. Dokümante edilmemiş bir endpoint, sağlayıcı bağlantısı veya
+  e-Belge işlemi mevcut özellik olarak varsayılmamalıdır.
 </Warning>

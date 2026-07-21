@@ -1,8 +1,8 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "almond",
-  "name": "FaturaDev Developers",
-  "description": "FaturaDev e-Belge gateway ve API dokümantasyonu",
+  "name": "FaturaDev Dokümantasyonu",
+  "description": "FaturaDev e-Belge Gateway, ürün ve geliştirici dokümantasyonu",
   "colors": {
     "primary": "#141414",
     "light": "#FAFAFA",
@@ -40,20 +40,47 @@
         "default": true,
         "tabs": [
           {
-            "tab": "Dokümantasyon",
+            "tab": "Başlangıç",
+            "icon": "rocket",
+            "groups": [
+              {
+                "group": "Hoş geldiniz",
+                "pages": [
+                  "index",
+                  "getting-started/key-features",
+                  "quickstart"
+                ]
+              },
+              {
+                "group": "Temel kavramlar",
+                "pages": [
+                  "getting-started/core-concepts/e-document-gateway",
+                  "getting-started/core-concepts/responsibility-model"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Ürün Rehberi",
             "icon": "book-open",
             "groups": [
               {
                 "group": "Genel Bakış",
-                "pages": ["index"]
-              },
-              {
-                "group": "Başlangıç",
-                "pages": ["quickstart"]
+                "pages": ["user-guide/introduction"]
               },
               {
                 "group": "Kaynaklar",
                 "pages": ["project/brand-assets"]
+              }
+            ]
+          },
+          {
+            "tab": "Geliştiriciler",
+            "icon": "brackets-curly",
+            "groups": [
+              {
+                "group": "Genel Bakış",
+                "pages": ["developers/introduction"]
               }
             ]
           }
@@ -64,7 +91,7 @@
   "navbar": {
     "primary": {
       "type": "button",
-      "label": "Dokümantasyonu keşfet",
+      "label": "Hızlı başlangıç",
       "href": "/quickstart"
     }
   },

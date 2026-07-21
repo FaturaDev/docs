@@ -82,6 +82,45 @@ jobs:
           if config.get("navbar", {}).get("primary", {}).get("type") != "button":
               raise SystemExit("Tahsil navigation lock requires the primary CTA button")
 
+          tabs = languages[0].get("tabs", [])
+          expected_tabs = ["Başlangıç", "Ürün Rehberi", "Geliştiriciler"]
+          actual_tabs = [tab.get("tab") for tab in tabs]
+          if actual_tabs != expected_tabs:
+              raise SystemExit(
+                  "Twenty information architecture lock mismatch: "
+                  f"expected tabs {expected_tabs}, found {actual_tabs}"
+              )
+
+          expected_group_prefixes = {
+              "Başlangıç": ["Hoş geldiniz", "Temel kavramlar"],
+              "Ürün Rehberi": ["Genel Bakış", "Kaynaklar"],
+              "Geliştiriciler": ["Genel Bakış"],
+          }
+          for tab in tabs:
+              label = tab["tab"]
+              groups = [group.get("group") for group in tab.get("groups", [])]
+              expected_prefix = expected_group_prefixes[label]
+              if groups[:len(expected_prefix)] != expected_prefix:
+                  raise SystemExit(
+                      "Twenty information architecture group mismatch for "
+                      f"{label}: expected prefix {expected_prefix}, found {groups}"
+                  )
+
+          expected_entry_pages = {
+              "Başlangıç": "index",
+              "Ürün Rehberi": "user-guide/introduction",
+              "Geliştiriciler": "developers/introduction",
+          }
+          for tab in tabs:
+              groups = tab.get("groups", [])
+              first_pages = groups[0].get("pages", []) if groups else []
+              expected_page = expected_entry_pages[tab["tab"]]
+              if not first_pages or first_pages[0] != expected_page:
+                  raise SystemExit(
+                      "Twenty information architecture overview mismatch for "
+                      f"{tab['tab']}: expected {expected_page} first"
+                  )
+
           css_digest = hashlib.sha256((root / "custom.css").read_bytes()).hexdigest()
           if css_digest != "d6e86f5d09c0ed706014809e0d61846068617c8cd1363094ed2b89b4c2578136":
               raise SystemExit("Tahsil design lock mismatch: custom.css")

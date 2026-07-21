@@ -1,69 +1,44 @@
 ---
-title: "Entegrasyon modeline genel bakış"
-description: "FaturaDev, müşteri yazılımı ve yetkili özel entegratör arasındaki sorumluluk sınırını anlayın."
-icon: "rocket"
+title: "Hızlı başlangıç"
+description: "FaturaDev entegrasyonunu değerlendirirken izlemeniz gereken public dokümantasyon yolunu takip edin."
+icon: "play"
 ---
 
-FaturaDev, yazılımınız ile müşterinizin yetkilendirdiği özel entegratör arasında
-ortak bir geliştirici yüzeyi oluşturur. Özel entegratör hesabının ve mali
-sorumlulukların yerini almaz.
+FaturaDev entegrasyonuna başlamadan önce ürün sınırını ve kullanacağınız
+public API sözleşmesini doğrulayın. Bir özel entegratör bağlantısı
+kullanacaksanız müşterinizin yetkilendirmesini de bu değerlendirmeye ekleyin.
 
-## FaturaDev ne sağlar?
+## 1. Ürün modelini anlayın
 
-FaturaDev'in public API sözleşmesi, farklı özel entegratör bağlantıları için
-ortak müşteri entegrasyon yüzeyini tanımlar. Bir özellik ancak bu sitede
-yayımlanan ürün ve API dokümanında yer aldığında kullanılabilir kabul edilir.
+[Ürün yaklaşımı](/getting-started/key-features) sayfasından ortak
+entegrasyon yüzeyinin amacını inceleyin. Ardından
+[e-Belge Gateway](/getting-started/core-concepts/e-document-gateway) kavramıyla
+FaturaDev'in istek yolundaki yerini doğrulayın.
 
-FaturaDev müşterinin özel entegratör seçimini veya sağlayıcıyla yaptığı
-sözleşmeyi değiştirmez. Bağlantı, müşterinin açıkça yetkilendirdiği hesap ve
-kapsamla sınırlıdır.
+## 2. Sorumluluk sınırını doğrulayın
 
-## Özel entegratör ne sağlar?
+[Sorumluluk modeli](/getting-started/core-concepts/responsibility-model),
+FaturaDev ile müşterinin yetkilendirdiği özel entegratörün görevlerini ayırır.
+Mali imza, GİB iletimi ve özel entegratör hesabı FaturaDev'e taşınmaz.
 
-Yetkili özel entegratör; kendi sözleşmesi ve GİB yetkisi kapsamında mali imza,
-GİB iletimi, sağlayıcı hesabı ve mevzuata tabi işlemlerden sorumludur.
-FaturaDev bu görevleri üstlenmez ve müşterinin mali mühür ya da özel imza
-anahtarını almaz.
+## 3. Yalnız yayımlanmış sözleşmeyi kullanın
 
-| Sorumluluk | FaturaDev | Yetkili özel entegratör |
-| --- | --- | --- |
-| Müşteri yazılımı için ortak API sözleşmesi | Evet | Sağlayıcıya özgü olabilir |
-| Özel entegratör hesabı ve ticari sözleşme | Hayır | Evet |
-| Mali mühür, e-imza veya XAdES | Hayır | Yetkili hizmet kapsamında |
-| GİB'e doğrudan belge iletimi | Hayır | Yetkili hizmet kapsamında |
-| Desteklenen operasyonların public sözleşmesi | FaturaDev API için | Sağlayıcı API'si için |
+Bir API operasyonunu ancak bu sitedeki kanonik API referansında yer aldığında
+kullanılabilir kabul edin. Henüz yayımlanmamış endpoint, payload, kimlik
+doğrulama yöntemi, kota veya sağlayıcı kabiliyeti hakkında varsayım yapmayın.
 
-## İstek yolu
+## Sonraki adımlar
 
-```text
-Müşteri yazılımı
-      ↓
-FaturaDev public API
-      ↓
-Müşterinin yetkilendirdiği özel entegratör bağlantısı
-      ↓
-GİB — özel entegratörün sorumluluk alanı
-```
-
-Bu ayrım, FaturaDev'in “özel entegratör” veya “GİB'e doğrudan bağlı servis”
-olarak yorumlanmasını önler.
-
-## API dokümanı
-
-Kanonik OpenAPI sözleşmesi yayımlandığında bu sitedeki API Referansı sekmesi:
-
-- kullanılabilir endpoint ve request şemalarını,
-- kimlik doğrulama yöntemini,
-- hata ve idempotency sözleşmesini,
-- desteklenen e-Belge ve sağlayıcı capability'lerini,
-- test ve production ortam sınırlarını
-
-gösterecektir. Bu bilgiler yayımlanana kadar endpoint veya payload tahmin
-etmeyin.
+<CardGroup cols={2}>
+  <Card title="Ürün rehberini açın" icon="book-open" href="/user-guide/introduction">
+    Public ürün açıklamalarını tek bir başlangıç sayfasından keşfedin.
+  </Card>
+  <Card title="Geliştirici merkezini açın" icon="brackets-curly" href="/developers/introduction">
+    Entegrasyon belgelerini ve API yayın sınırını inceleyin.
+  </Card>
+</CardGroup>
 
 <Note>
   Bir özel entegratörün test hesabı veya bağlantı koşulları için yalnız o
-  sağlayıcının resmî ve güncel public kanallarını kullanın. FaturaDev'de bir
-  sağlayıcı bağlantısı ancak public ürün dokümanında yayımlandığında
-  kullanılabilir kabul edilir.
+  sağlayıcının resmî ve güncel public kanallarını kullanın.
 </Note>

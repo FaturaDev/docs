@@ -47,6 +47,23 @@ The public documentation design is a 1:1 FaturaDev adaptation of [`muhasip/tahsi
 
 A design change requires the owner's explicit decision, a newly pinned Tahsil reference when applicable, updated policy checks and a focused pull request. Ordinary content work cannot change the locked design.
 
+## Locked Twenty information architecture
+
+The public landing and documentation structure follows
+[`twentyhq/twenty/packages/twenty-docs`](https://github.com/twentyhq/twenty/tree/c503d4c4aaa29c978d8c190ad8232658e970d06c/packages/twenty-docs)
+at commit `c503d4c4aaa29c978d8c190ad8232658e970d06c`.
+
+- Keep three public top-level documentation surfaces: `Başlangıç`, `Ürün Rehberi`, and `Geliştiriciler`.
+- Keep the landing flow positioning-first: a concise product statement, differentiators, audience fit, non-fit, and a clear next step.
+- Use overview pages as section entry points. Add `Referans` and `Nasıl yapılır?` groups only for capabilities that are already released and supported by public product contracts.
+- Keep API, webhook, OAuth, provider, self-hosting, or contribution groups absent until each subject has a genuinely published FaturaDev contract or public program.
+- Adapt the hierarchy and content rhythm only. Never copy Twenty product claims, prose, screenshots, illustrations, brand assets, source code, or unreleased FaturaDev promises.
+- The Twenty information architecture does not override the locked Tahsil visual system. Do not copy Twenty CSS, imagery, components, card art, or layout styling.
+
+Changing the three top-level surfaces or the positioning-first landing flow requires
+the owner's explicit decision, an updated pinned reference, policy checks, and a
+focused pull request.
+
 ## Product language
 
 - Use `FaturaDev` for the product and `fatura.dev` for the public site.

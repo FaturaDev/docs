@@ -19,9 +19,16 @@ The site is the public home for:
 
 Internal architecture, credentials, real customer documents, personal data, provider NDA material, private endpoints, raw agent transcripts, and security-sensitive runbooks do not belong in this repository. See [AGENTS.md](./AGENTS.md) before editing content.
 
-## Locked documentation design
+## Locked documentation presentation
 
 The public presentation follows the [`muhasip/tahsil`](https://github.com/muhasip/tahsil) Mintlify design at commit `a86e7650bc0a5a24fbf384679ab60db853d0dd5f`. FaturaDev changes only the brand assets, public product copy, public navigation and domain-specific links. New themes, components, CSS rules or visual patterns are not introduced independently.
+
+The public landing and information architecture follow the
+[`twentyhq/twenty/packages/twenty-docs`](https://github.com/twentyhq/twenty/tree/c503d4c4aaa29c978d8c190ad8232658e970d06c/packages/twenty-docs)
+structure at commit `c503d4c4aaa29c978d8c190ad8232658e970d06c`.
+FaturaDev adapts its three audience surfaces and positioning-first content flow;
+it does not copy Twenty's product text, brand, imagery, features or CSS. The
+Tahsil visual lock remains authoritative for presentation.
 
 ## Local development
 

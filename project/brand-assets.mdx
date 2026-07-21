@@ -1,0 +1,80 @@
+---
+title: "Marka varlıkları"
+description: "FaturaDev marka sürümü 1.0.0 için kilitli ikonlar, SHA-256 değerleri ve kullanım kuralları."
+sidebarTitle: "Marka varlıkları"
+---
+
+# Kilitli FaturaDev marka varlıkları
+
+FaturaDev marka sürümü `1.0.0`, aşağıdaki iki kanonik dosyadan oluşur. Dosyaların byte içerikleri değişmez kabul edilir.
+
+> Karar durumu: **LOCKED / Accepted**
+>
+> Kilit tarihi: **2026-07-21**
+>
+> Son hash doğrulaması: **2026-07-21**
+
+## Kanonik dosyalar
+
+| Dosya | Teknik özellik | SHA-256 | Rol |
+|---|---|---|---|
+| [`fatura-type.svg`](/images/brand/fatura-type.svg) | 2.292 byte, 356×656 SVG | `e08df29bec6b380442734d24baec26f07848b3d5e347036f3fb874f1226359fa` | Şeffaf zeminli siyah vektör marka işareti |
+| [`fatura-icon.png`](/images/brand/fatura-icon.png) | 15.012 byte, 1024×1024 RGBA PNG | `96f8e0b74f1c325bcd2a58ee52ce54b4dda04d9664e8401f4ae3cf490c6d6385` | Siyah zeminli, beyaz işaretli kare uygulama ikonu |
+
+Makine tarafından okunabilir kayıt [`brand-assets.json`](/images/brand/brand-assets.json) manifestidir. Manifestin SHA-256 değeri `7a80fe333715f75a940c3664f70cfcf9a0e67efb17fcd156a334a21cc16e6ec1` değeridir.
+
+Kanonik public kaynak `FaturaDev/docs` reposundaki `images/brand` dizinidir. Başka bir repodaki kopya kanonik kaynak sayılmaz.
+
+## Kullanım önceliği
+
+- Ölçeklenebilir ve şeffaf zemin gereken yerde `fatura-type.svg` kullanılır.
+- Kare, siyah zeminli uygulama ikonu gereken yerde `fatura-icon.png` kullanılır.
+- `fatura.dev`, `app.fatura.dev` ve FaturaDev GitHub organizasyonu bu kanonik kaynaklardan uygun olanı kullanır.
+- Yeni wordmark, alternatif ikon, monogram veya animasyon oluşturulmaz.
+
+## Değişmezlik kuralları
+
+Şu işlemler yasaktır:
+
+- SVG path'ini veya PNG piksellerini yeniden çizmek ya da optimize etmek,
+- yeniden renklendirmek, kırpmak, döndürmek, esnetmek veya eğmek,
+- gölge, kontur, gradyan, maske veya başka efekt eklemek,
+- aynı dosya adı altında sessizce farklı içerik yayımlamak.
+
+Kanonik değişiklik yalnız proje sahibinin açık kararı, `brandVersion` artışı, güncellenmiş manifest ve değişiklik kaydıyla yapılabilir.
+
+## İzin verilen teknik türevler
+
+Hedef platformun zorunlu kıldığı favicon, uygulama ikonu veya sosyal paylaşım çıktısı, görseli yeniden tasarlamadan üretilebilir. Her türev aşağıdaki provenance bilgisini taşımalıdır:
+
+- kaynak dosya ve marka sürümü,
+- kaynak SHA-256 değeri,
+- üretim aracı ve parametreleri,
+- çıktı SHA-256 değeri.
+
+Bir türev hiçbir zaman kanonik dosyanın yerine geçmez.
+
+## Uygulama sınırı
+
+Bu dosyalar UI component'i değildir. `app` içinde yalnız resmî COSS UI composition noktalarında asset olarak kullanılır. SVG path'i bir component içine gömülmez ve COSS kaynağı marka dosyası için değiştirilmez.
+
+## Yerel doğrulama
+
+Repo kökünde aşağıdaki komutu çalıştırın:
+
+```bash
+shasum -a 256 \
+  images/brand/fatura-type.svg \
+  images/brand/fatura-icon.png \
+  images/brand/brand-assets.json
+```
+
+Çıktı sırasıyla şu değerleri vermelidir:
+
+```text
+e08df29bec6b380442734d24baec26f07848b3d5e347036f3fb874f1226359fa
+96f8e0b74f1c325bcd2a58ee52ce54b4dda04d9664e8401f4ae3cf490c6d6385
+7a80fe333715f75a940c3664f70cfcf9a0e67efb17fcd156a334a21cc16e6ec1
+```
+
+CI ayrıca SVG'nin script, dış kaynak, embed ve font bağımlılığı içermediğini; PNG ölçüsü ve renk modunun manifestle eşleştiğini doğrular.

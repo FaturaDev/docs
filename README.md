@@ -1,55 +1,71 @@
-# Mintlify Starter Kit
+# FaturaDev documentation
 
-Use the starter kit to get your docs deployed and ready to customize.
+This repository contains the public Mintlify source for [fatura.dev](https://fatura.dev).
 
-Click the green **Use this template** button at the top of this repo to copy the Mintlify starter kit. The starter kit contains examples with
+FaturaDev is a multi-provider e-Belge API and orchestration platform. It gives software teams one integration surface for customer-authorized special integrator connections. FaturaDev is not a special integrator and does not connect directly to GİB or perform financial-seal, electronic-signature, XAdES, or GİB-submission duties.
 
-- Guide pages
-- Navigation
-- Customizations
-- API reference pages
-- Use of popular components
+## Published scope
 
-**[Follow the full quickstart guide](https://starter.mintlify.com/quickstart)**
+The site is the public home for:
 
-## AI-assisted writing
+- product positioning and released capabilities,
+- integration and usage guides,
+- e-Belge and provider documentation backed by official sources,
+- the versioned API reference after its canonical OpenAPI artifact is published,
+- release notes and public operational notices,
+- locked FaturaDev brand assets.
 
-Set up your AI coding tool to work with Mintlify:
+Internal architecture, credentials, real customer documents, personal data, provider NDA material, private endpoints, raw agent transcripts, and security-sensitive runbooks do not belong in this repository. See [AGENTS.md](./AGENTS.md) before editing content.
+
+## Local development
+
+Install the current [Mintlify CLI](https://www.mintlify.com/docs/cli):
 
 ```bash
-npx skills add https://mintlify.com/docs
+npm install --global mint@latest
 ```
 
-This command installs Mintlify's documentation skill for your configured AI tools like Claude Code, Cursor, Windsurf, and others. The skill includes component reference, writing standards, and workflow guidance.
+Start the local preview from the directory containing `docs.json`:
 
-See the [AI tools guides](/ai-tools) for tool-specific setup.
-
-## Development
-
-Install the [Mintlify CLI](https://www.npmjs.com/package/mint) to preview your documentation changes locally. To install, use the following command:
-
-```
-npm i -g mint
-```
-
-Run the following command at the root of your documentation, where your `docs.json` is located:
-
-```
+```bash
 mint dev
 ```
 
-View your local preview at `http://localhost:3000`.
+The preview is available at `http://localhost:3000` by default.
 
-## Publishing changes
+## Validation
 
-Install our GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app) to propagate changes from your repo to your deployment. Changes are deployed to production automatically after pushing to the default branch.
+Run the same public documentation checks before requesting review:
 
-## Need help?
+```bash
+mint validate
+mint broken-links --check-anchors --check-redirects
+mint a11y
+```
 
-### Troubleshooting
+Validate the locked brand files separately:
 
-- If your dev environment isn't running: Run `mint update` to ensure you have the most recent version of the CLI.
-- If a page loads as a 404: Make sure you are running in a folder with a valid `docs.json`.
+```bash
+shasum -a 256 \
+  images/brand/fatura-type.svg \
+  images/brand/fatura-icon.png \
+  images/brand/brand-assets.json
+```
 
-### Resources
-- [Mintlify documentation](https://mintlify.com/docs)
+Expected values are documented on the [brand assets page](https://fatura.dev/project/brand-assets) and in `images/brand/brand-assets.json`.
+
+## Contribution and publishing
+
+1. Start from the current `main` branch.
+2. Create an issue-scoped branch such as `codex/FD-123-short-description`.
+3. Make public-safe changes and add every new page to `docs.json`.
+4. Run the local validation commands.
+5. Open a pull request and complete its public-safety checklist.
+6. Obtain the required human and code-owner reviews.
+7. Merge through the protected branch workflow. Do not push directly to `main`.
+
+The Mintlify GitHub integration publishes reviewed changes from the configured production branch. Deployment credentials and private deployment procedures are not stored in this public repository.
+
+## Brand assets
+
+The canonical, immutable brand files live in [`images/brand`](./images/brand). Do not modify their bytes or create an alternative logo or wordmark. See [Marka varlıkları](https://fatura.dev/project/brand-assets) for hashes and usage rules.

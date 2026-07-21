@@ -1,49 +1,65 @@
-# FaturaDev documentation
+# FaturaDev dokümantasyonu
 
-This repository contains the public Mintlify source for [fatura.dev](https://fatura.dev).
+Bu repo, [fatura.dev](https://fatura.dev) sitesinin public Mintlify kaynağını
+içerir.
 
-This repository is customer-facing only. It is not an internal source of truth or team wiki. If material is not appropriate for anonymous publication, it must not be added here—even as an ignored file, orphan page, draft, commit message or pull-request note.
+Repodaki her dosya, commit mesajı ve pull request anonim ziyaretçilere açık
+kabul edilir. Kimlik doğrulaması olmadan yayımlanmaya uygun olmayan hiçbir
+bilgi; taslak, göz ardı edilen dosya veya bağlantısız sayfa olarak dahi bu
+repoya eklenmemelidir.
 
-FaturaDev is a multi-provider e-Belge API and orchestration platform. It gives software teams one integration surface for customer-authorized special integrator connections. FaturaDev is not a special integrator and does not connect directly to GİB or perform financial-seal, electronic-signature, XAdES, or GİB-submission duties.
+FaturaDev, çok sağlayıcılı bir e-Belge API ve orkestrasyon platformudur. Yazılım
+ekiplerine, müşterinin yetkilendirdiği özel entegratör bağlantıları için ortak
+bir entegrasyon yüzeyi sunar. FaturaDev özel entegratör değildir; GİB'e doğrudan
+bağlanmaz ve mali mühür, e-imza, XAdES veya GİB'e belge iletimi görevlerini
+üstlenmez.
 
-## Published scope
+## Yayımlanan kapsam
 
-The site is the public home for:
+Bu repo aşağıdaki public içeriklerin kaynağıdır:
 
-- product positioning and released capabilities,
-- integration and usage guides,
-- e-Belge and provider documentation backed by official sources,
-- the versioned API reference after its canonical OpenAPI artifact is published,
-- release notes and public operational notices,
-- locked FaturaDev brand assets.
+- ürün konumlandırması ve kullanım senaryoları,
+- entegrasyon kavramları ve kullanım rehberleri,
+- resmî kaynaklarla desteklenen e-Belge rehberleri,
+- kilitli FaturaDev marka varlıkları.
 
-Internal architecture, credentials, real customer documents, personal data, provider NDA material, private endpoints, raw agent transcripts, and security-sensitive runbooks do not belong in this repository. See [AGENTS.md](./AGENTS.md) before editing content.
+API referansı yalnız kanonik OpenAPI sözleşmesi public olarak yayımlandıktan
+sonra bu kapsama eklenebilir. İç mimari, erişim bilgileri, gerçek müşteri
+belgeleri, kişisel veriler, sağlayıcı NDA içeriği, private endpoint'ler, ekip
+notları ve operasyon runbook'ları bu repoda yer alamaz.
 
-## Locked documentation presentation
+İçerik değiştirmeden önce [public yayın politikasını](./AGENTS.md), [katkı
+adımlarını](#katkı-ve-yayın) ve [güvenlik
+politikasını](./.github/SECURITY.md) okuyun.
 
-The public presentation follows the [`muhasip/tahsil`](https://github.com/muhasip/tahsil) Mintlify design at commit `a86e7650bc0a5a24fbf384679ab60db853d0dd5f`. FaturaDev changes only the brand assets, public product copy, public navigation and domain-specific links. New themes, components, CSS rules or visual patterns are not introduced independently.
+## Kilitli dokümantasyon sunumu
 
-The public landing and information architecture follow the
+Public sunum, [`muhasip/tahsil`](https://github.com/muhasip/tahsil) reposunun
+`a86e7650bc0a5a24fbf384679ab60db853d0dd5f` commit'indeki Mintlify tasarımını
+izler. FaturaDev yalnız kilitli marka varlıklarını, public ürün metinlerini,
+navigasyonu ve alan adına özgü bağlantıları kullanır. Bağımsız tema, bileşen,
+CSS kuralı veya görsel dil eklenmez.
+
+Public landing ve bilgi mimarisi,
 [`twentyhq/twenty/packages/twenty-docs`](https://github.com/twentyhq/twenty/tree/c503d4c4aaa29c978d8c190ad8232658e970d06c/packages/twenty-docs)
-structure at commit `c503d4c4aaa29c978d8c190ad8232658e970d06c`.
-FaturaDev adapts its three audience surfaces and positioning-first content flow;
-it does not copy Twenty's product text, brand, imagery, features or CSS. The
-Tahsil visual lock remains authoritative for presentation.
+yapısının `c503d4c4aaa29c978d8c190ad8232658e970d06c` commit'indeki üç yüzeyli
+içerik ritmini izler. Tahsil görsel kilidi sunum için belirleyici olmaya devam
+eder.
 
-## Local development
+## Yerel geliştirme
 
-Start the local preview from the directory containing `docs.json` with the
-pinned validation version:
+`docs.json` dosyasının bulunduğu dizinde sabitlenmiş Mintlify sürümüyle yerel
+önizlemeyi başlatın:
 
 ```bash
 npx -y mint@4.2.722 dev
 ```
 
-The preview is available at `http://localhost:3000` by default.
+Önizleme varsayılan olarak `http://localhost:3000` adresinde açılır.
 
-## Validation
+## Doğrulama
 
-Run the same public documentation checks before requesting review:
+İnceleme istemeden önce zorunlu dokümantasyon kontrollerini çalıştırın:
 
 ```bash
 npx -y mint@4.2.722 validate
@@ -51,7 +67,7 @@ npx -y mint@4.2.722 broken-links --check-anchors --check-redirects
 npx -y mint@4.2.722 a11y
 ```
 
-Validate the locked brand files separately:
+Kilitli marka dosyalarını ayrıca doğrulayın:
 
 ```bash
 shasum -a 256 \
@@ -60,20 +76,30 @@ shasum -a 256 \
   images/brand/brand-assets.json
 ```
 
-Expected values are recorded in `images/brand/brand-assets.json` and enforced by the public policy workflow. The [brand assets page](https://fatura.dev/project/brand-assets) contains only customer-facing download and usage guidance.
+Beklenen değerler `images/brand/brand-assets.json` dosyasında kayıtlıdır ve
+public policy iş akışı tarafından denetlenir. [Marka varlıkları
+sayfası](https://fatura.dev/project/brand-assets), yalnız dış kullanıcıların
+indirme ve kullanım ihtiyaçlarını açıklar.
 
-## Contribution and publishing
+## Katkı ve yayın
 
-1. Start from the current `main` branch.
-2. Create an issue-scoped branch such as `codex/FD-123-short-description`.
-3. Make public-safe changes and add every new page to `docs.json`.
-4. Run the local validation commands.
-5. Open a pull request and complete its public-safety checklist.
-6. Obtain the required human and code-owner reviews.
-7. Merge through the protected branch workflow. Do not push directly to `main`.
+1. Güncel `main` branch'inden başlayın.
+2. `codex/123-kisa-aciklama` biçiminde issue-scoped bir branch oluşturun.
+3. Yalnız public-safe değişiklikler yapın ve her yeni sayfayı `docs.json`
+   navigasyonuna ekleyin.
+4. Yerel doğrulama komutlarını çalıştırın.
+5. Public güvenlik kontrol listesini tamamlayan bir pull request açın.
+6. Gerekli insan ve code owner incelemelerini alın.
+7. Korumalı branch akışı üzerinden birleştirin; `main` branch'ine doğrudan
+   push yapmayın.
 
-The Mintlify GitHub integration publishes reviewed changes from the configured production branch. Deployment credentials and private deployment procedures are not stored in this public repository.
+Güvenlik açığını public issue olarak paylaşmayın. Bu repo veya public
+dokümantasyon sitesiyle ilgili güvenlik bildirimleri için [güvenlik
+politikasındaki](./.github/SECURITY.md) özel bildirim kanalını kullanın.
 
-## Brand assets
+## Marka varlıkları
 
-The canonical, immutable brand files live in [`images/brand`](./images/brand). Do not modify their bytes or create an alternative logo or wordmark. See [Marka varlıkları](https://fatura.dev/project/brand-assets) for hashes and usage rules.
+Kanonik ve değiştirilemez marka dosyaları [`images/brand`](./images/brand)
+dizinindedir. Dosya byte'larını değiştirmeyin; alternatif logo veya wordmark
+üretmeyin. Hash ve kullanım kuralları için [Marka
+varlıkları](https://fatura.dev/project/brand-assets) sayfasını inceleyin.

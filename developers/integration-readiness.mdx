@@ -1,0 +1,58 @@
+---
+title: "Entegrasyon hazırlığı"
+description: "FaturaDev entegrasyonuna başlamadan önce doğrulanması gereken public ürün ve sözleşme koşullarını inceleyin."
+icon: "list-check"
+---
+
+Bu sayfa, dış geliştiricilerin uygulamaya başlamadan önce tamamlayacağı public
+değerlendirme sırasını açıklar. Bir API operasyonu, kimlik doğrulama yöntemi,
+ortam veya sağlayıcı bağlantısı yayımlamaz.
+
+## Hazırlık sırası
+
+1. [Kullanım senaryolarından](/user-guide/use-cases) ürün bağlamınızın
+   FaturaDev'e uygun olup olmadığını değerlendirin.
+2. [e-Belge Gateway](/getting-started/core-concepts/e-document-gateway)
+   kavramıyla müşteri yazılımı, FaturaDev ve yetkili özel entegratör arasındaki
+   sınırı doğrulayın.
+3. [Sorumluluk modelinden](/getting-started/core-concepts/responsibility-model)
+   mevzuata tabi görevlerin hangi tarafta kaldığını inceleyin.
+4. Kullanılacak bağlantının müşteriye ait, müşterinin yetkilendirdiği özel
+   entegratör hesabı ve kapsamıyla sınırlı olduğunu doğrulayın.
+5. Uygulayacağınız işlemin [kanonik API
+   referansında](/developers/introduction#api-referansı) açıkça yayımlandığını
+   doğrulayın.
+
+## Public kaynakları nasıl yorumlamalısınız?
+
+| Public bilgi | Entegrasyon açısından anlamı |
+| --- | --- |
+| API referansında operasyon ve şema bulunur | Yalnız referansta açıklanan kapsam uygulama sözleşmesidir. |
+| Bir kavram veya e-Belge rehberi belge türünden söz eder | Kavramsal bağlam sağlar; API kullanılabilirliğini kanıtlamaz. |
+| GİB veya özel entegratör kaynağında bir kabiliyet yer alır | Dış kaynağın kapsamını açıklar; tek başına FaturaDev kabiliyeti oluşturmaz. |
+| FaturaDev public sözleşmesinde bilgi bulunmaz | Endpoint, payload, ortam veya sağlayıcı desteği varsayılmamalıdır. |
+
+## Uygulama planına taşımamanız gereken varsayımlar
+
+- Bir sağlayıcının desteklediği her işlemin FaturaDev tarafından desteklendiği,
+- bir e-Belge rehberinde anlatılan her belge türü için API operasyonu bulunduğu,
+- dokümante edilmemiş bir endpoint veya payload'ın kararlı olduğu,
+- kimlik doğrulama, ortam veya kota bilgisinin sağlayıcıdan FaturaDev'e aynen
+  taşındığı.
+
+<Warning>
+  Kavramsal dokümantasyon, belirli bir API kabiliyetinin yayımlandığı anlamına
+  gelmez. Uygulamada yalnız FaturaDev'in kanonik public API sözleşmesini esas
+  alın.
+</Warning>
+
+## Sonraki adım
+
+<CardGroup cols={2}>
+  <Card title="Hızlı başlangıç" icon="play" href="/quickstart">
+    Public değerlendirme yolunun tamamını izleyin.
+  </Card>
+  <Card title="Sorumluluk modeli" icon="building-shield" href="/getting-started/core-concepts/responsibility-model">
+    Teknik entegrasyon ile mevzuata tabi görevleri karşılaştırın.
+  </Card>
+</CardGroup>

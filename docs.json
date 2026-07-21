@@ -95,7 +95,10 @@
             "groups": [
               {
                 "group": "Genel Bakış",
-                "pages": ["developers/introduction"]
+                "pages": [
+                  "developers/introduction",
+                  "developers/integration-readiness"
+                ]
               }
             ]
           }

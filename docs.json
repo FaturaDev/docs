@@ -71,6 +71,15 @@
               {
                 "group": "Kaynaklar",
                 "pages": ["project/brand-assets"]
+              },
+              {
+                "group": "e-Belge rehberleri",
+                "pages": [
+                  "user-guide/e-documents/overview",
+                  "user-guide/e-documents/e-invoice",
+                  "user-guide/e-documents/e-archive-invoice",
+                  "user-guide/e-documents/e-dispatch"
+                ]
               }
             ]
           },

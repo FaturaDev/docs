@@ -31,11 +31,60 @@ jobs:
           import hashlib
           import json
           import pathlib
+          import re
           import struct
+          import subprocess
           import xml.etree.ElementTree as ET
 
           root = pathlib.Path(".")
           config = json.loads((root / "docs.json").read_text())
+
+          expected_design = {
+              "theme": "almond",
+              "colors": {
+                  "primary": "#141414",
+                  "light": "#FAFAFA",
+                  "dark": "#141414",
+              },
+              "appearance": {"default": "system", "strict": False},
+              "interaction": {"drilldown": False},
+              "styling": {"eyebrows": "breadcrumbs", "codeblocks": "system"},
+              "contextual": {"options": ["copy", "view"]},
+          }
+          for key, expected_value in expected_design.items():
+              if config.get(key) != expected_value:
+                  raise SystemExit(
+                      f"Tahsil design lock mismatch for docs.json:{key}"
+                  )
+
+          if "api" in config:
+              raise SystemExit(
+                  "Unpublished API controls are forbidden until a canonical OpenAPI contract exists"
+              )
+
+          expected_faturadev_presentation = {
+              "logo": {
+                  "light": "/images/brand/fatura-icon.png",
+                  "dark": "/images/brand/fatura-icon.png",
+                  "href": "/",
+              },
+              "favicon": "/images/brand/fatura-icon.png",
+          }
+          for key, expected_value in expected_faturadev_presentation.items():
+              if config.get(key) != expected_value:
+                  raise SystemExit(f"FaturaDev presentation lock mismatch: {key}")
+
+          languages = config.get("navigation", {}).get("languages", [])
+          if not languages or languages[0].get("language") != "tr":
+              raise SystemExit("Tahsil navigation lock requires Turkish language root")
+          if languages[0].get("default") is not True:
+              raise SystemExit("Tahsil navigation lock requires Turkish as default")
+          if config.get("navbar", {}).get("primary", {}).get("type") != "button":
+              raise SystemExit("Tahsil navigation lock requires the primary CTA button")
+
+          css_digest = hashlib.sha256((root / "custom.css").read_bytes()).hexdigest()
+          if css_digest != "d6e86f5d09c0ed706014809e0d61846068617c8cd1363094ed2b89b4c2578136":
+              raise SystemExit("Tahsil design lock mismatch: custom.css")
 
           expected = {
               "images/brand/fatura-type.svg": "e08df29bec6b380442734d24baec26f07848b3d5e347036f3fb874f1226359fa",
@@ -61,12 +110,116 @@ jobs:
           if (width, height) != (1024, 1024):
               raise SystemExit("Unexpected PNG dimensions")
 
-          pages = []
-          for group in config["navigation"]["pages"]:
-              pages.extend(group.get("pages", []))
-          for page in pages:
+          pages = set()
+
+          def collect_pages(node):
+              if isinstance(node, dict):
+                  for key, value in node.items():
+                      if key == "pages":
+                          collect_pages(value)
+                      elif key in {"languages", "tabs", "groups"}:
+                          collect_pages(value)
+              elif isinstance(node, list):
+                  for item in node:
+                      collect_pages(item)
+              elif isinstance(node, str):
+                  pages.add(node)
+
+          collect_pages(config["navigation"])
+          for page in sorted(pages):
               if not (root / f"{page}.mdx").is_file():
                   raise SystemExit(f"Missing navigation page: {page}.mdx")
+
+          tracked = subprocess.check_output(
+              ["git", "ls-files"], text=True
+          ).splitlines()
+          tracked_mdx = {
+              pathlib.PurePosixPath(name).with_suffix("").as_posix()
+              for name in tracked
+              if name.casefold().endswith(".mdx")
+          }
+          if tracked_mdx != pages:
+              missing_from_nav = sorted(tracked_mdx - pages)
+              missing_from_git = sorted(pages - tracked_mdx)
+              raise SystemExit(
+                  "Public page/navigation mismatch: "
+                  f"orphan={missing_from_nav}, untracked={missing_from_git}"
+              )
+
+          design_source_files = {
+              name for name in tracked if name.casefold().endswith((".css", ".jsx", ".tsx"))
+          }
+          if design_source_files != {"custom.css"}:
+              raise SystemExit(
+                  "Locked Tahsil design forbids additional CSS/JSX/TSX files: "
+                  f"{sorted(design_source_files)}"
+              )
+
+          for page in sorted(pages):
+              page_text = (root / f"{page}.mdx").read_text()
+              if re.search(r"(?m)^#\s+", page_text):
+                  raise SystemExit(
+                      f"Tahsil composition uses frontmatter H1; body H1 found: {page}.mdx"
+                  )
+
+          homepage = (root / "index.mdx").read_text()
+          card_groups = re.findall(
+              r"<CardGroup\s+cols=\{2\}>(.*?)</CardGroup>",
+              homepage,
+              flags=re.DOTALL,
+          )
+          card_counts = [len(re.findall(r"<Card\s", group)) for group in card_groups]
+          if card_counts != [2, 4]:
+              raise SystemExit(
+                  "Tahsil homepage composition requires 2-card then 4-card groups; "
+                  f"found {card_counts}"
+              )
+          if "<Warning>" not in homepage:
+              raise SystemExit("Tahsil homepage composition requires a final Warning")
+
+          banned_segments = {
+              "internal",
+              "private",
+              "team-only",
+              "agent-notes",
+              "drafts",
+          }
+          for name in tracked:
+              lowered = name.casefold()
+              parts = set(pathlib.PurePosixPath(lowered).parts)
+              if parts & banned_segments or lowered.endswith(".draft.mdx"):
+                  raise SystemExit(f"Team-only or draft path in public Git: {name}")
+
+          content_patterns = {
+              "non-public classification": re.compile(
+                  r"(?im)^\s*(?:>|-)?\s*(?:classification|sınıflandırma)\s*:\s*"
+                  r"(?:internal|confidential|restricted)\b"
+              ),
+              "team-only marker": re.compile(
+                  r"(?i)\b(?:internal only|for internal use|team only|"
+                  r"ekip içi|sadece ekip|dahili kullanım)\b"
+              ),
+              "private FaturaDev repository": re.compile(
+                  r"(?i)github\.com/FaturaDev/(?:engineering|spikes|gateway|app)(?:[/#?\s)]|$)"
+              ),
+              "local filesystem link": re.compile(
+                  r"(?i)(?:file://|/Users/|/home/[^/\s]+/|[a-z]:\\Users\\)"
+              ),
+              "internal record path": re.compile(
+                  r"(?i)(?:agents/(?:sessions|handoffs)|provider-notes/|"
+                  r"research/discovery-|decisions/adr/)"
+              ),
+              "internal decision status": re.compile(
+                  r"(?im)^\s*(?:>|-)?\s*(?:karar durumu|decision status)\s*:"
+              ),
+          }
+          public_files = [root / f"{page}.mdx" for page in sorted(pages)]
+          public_files.append(root / "docs.json")
+          for path in public_files:
+              text = path.read_text()
+              for label, pattern in content_patterns.items():
+                  if pattern.search(text):
+                      raise SystemExit(f"{label} detected in public content: {path}")
           PY
 
       - name: Reject obvious public-repository secrets
@@ -80,3 +233,34 @@ jobs:
             echo "Forbidden secret-bearing file type detected." >&2
             exit 1
           fi
+
+      - name: Require public publication attestations
+        if: github.event_name == 'pull_request'
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import os
+          import re
+
+          body = os.environ.get("PR_BODY", "")
+          required = [
+              "İçerik yalnız anonim ziyaretçi, müşteri veya dış entegrasyon geliştiricisi içindir.",
+              "Ekip konuşması/notu, ajan çıktısı, görev/issue planı, spike/araştırma, iç karar veya operasyon ayrıntısı yoktur.",
+              "Provider onboarding, private sandbox, ticari koşul, yayınlanmamış provider sırası/roadmap/capability yoktur.",
+              "Private repo/issue/PR, local dosya yolu veya access-controlled kanıt bağlantısı yoktur.",
+              "Şüpheli içerik bu repo ve Git geçmişi dışında tutulmuştur; hidden/orphan draft yoktur.",
+          ]
+          missing = []
+          for label in required:
+              pattern = re.compile(r"^- \[[xX]\] " + re.escape(label) + r"$", re.MULTILINE)
+              if not pattern.search(body):
+                  missing.append(label)
+          if missing:
+              raise SystemExit(
+                  "Missing required public publication attestations:\n- "
+                  + "\n- ".join(missing)
+              )
+          PY

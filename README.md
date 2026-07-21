@@ -2,6 +2,8 @@
 
 This repository contains the public Mintlify source for [fatura.dev](https://fatura.dev).
 
+This repository is customer-facing only. It is not an internal source of truth or team wiki. If material is not appropriate for anonymous publication, it must not be added here—even as an ignored file, orphan page, draft, commit message or pull-request note.
+
 FaturaDev is a multi-provider e-Belge API and orchestration platform. It gives software teams one integration surface for customer-authorized special integrator connections. FaturaDev is not a special integrator and does not connect directly to GİB or perform financial-seal, electronic-signature, XAdES, or GİB-submission duties.
 
 ## Published scope
@@ -17,18 +19,17 @@ The site is the public home for:
 
 Internal architecture, credentials, real customer documents, personal data, provider NDA material, private endpoints, raw agent transcripts, and security-sensitive runbooks do not belong in this repository. See [AGENTS.md](./AGENTS.md) before editing content.
 
+## Locked documentation design
+
+The public presentation follows the [`muhasip/tahsil`](https://github.com/muhasip/tahsil) Mintlify design at commit `a86e7650bc0a5a24fbf384679ab60db853d0dd5f`. FaturaDev changes only the brand assets, public product copy, public navigation and domain-specific links. New themes, components, CSS rules or visual patterns are not introduced independently.
+
 ## Local development
 
-Install the current [Mintlify CLI](https://www.mintlify.com/docs/cli):
+Start the local preview from the directory containing `docs.json` with the
+pinned validation version:
 
 ```bash
-npm install --global mint@latest
-```
-
-Start the local preview from the directory containing `docs.json`:
-
-```bash
-mint dev
+npx -y mint@4.2.722 dev
 ```
 
 The preview is available at `http://localhost:3000` by default.
@@ -38,9 +39,9 @@ The preview is available at `http://localhost:3000` by default.
 Run the same public documentation checks before requesting review:
 
 ```bash
-mint validate
-mint broken-links --check-anchors --check-redirects
-mint a11y
+npx -y mint@4.2.722 validate
+npx -y mint@4.2.722 broken-links --check-anchors --check-redirects
+npx -y mint@4.2.722 a11y
 ```
 
 Validate the locked brand files separately:
@@ -52,7 +53,7 @@ shasum -a 256 \
   images/brand/brand-assets.json
 ```
 
-Expected values are documented on the [brand assets page](https://fatura.dev/project/brand-assets) and in `images/brand/brand-assets.json`.
+Expected values are recorded in `images/brand/brand-assets.json` and enforced by the public policy workflow. The [brand assets page](https://fatura.dev/project/brand-assets) contains only customer-facing download and usage guidance.
 
 ## Contribution and publishing
 

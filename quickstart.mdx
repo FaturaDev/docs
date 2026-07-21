@@ -1,52 +1,69 @@
 ---
-title: "Entegrasyona hazırlık"
-description: "FaturaDev erişimi açılmadan önce test ortamı, sağlayıcı bağlantısı ve toplu işlem modelini hazırlayın."
+title: "Entegrasyon modeline genel bakış"
+description: "FaturaDev, müşteri yazılımı ve yetkili özel entegratör arasındaki sorumluluk sınırını anlayın."
+icon: "rocket"
 ---
 
-# Entegrasyona hazırlık
+FaturaDev, yazılımınız ile müşterinizin yetkilendirdiği özel entegratör arasında
+ortak bir geliştirici yüzeyi oluşturur. Özel entegratör hesabının ve mali
+sorumlulukların yerini almaz.
 
-Bu sayfa, FaturaDev API erişimi açıldığında ilk sandbox akışını güvenli biçimde çalıştırabilmeniz için gereken hazırlıkları açıklar. Yayımlanmış OpenAPI sözleşmesi bulunmayan endpoint veya payload'ları tahmin etmeyin.
+## FaturaDev ne sağlar?
 
-<Warning>
-  FaturaDev hesabı, özel entegratör hesabının yerine geçmez. Test ve production erişim bilgilerini ilgili özel entegratör kendi yetkilendirme sürecine göre sağlar.
-</Warning>
+FaturaDev'in public API sözleşmesi, farklı özel entegratör bağlantıları için
+ortak müşteri entegrasyon yüzeyini tanımlar. Bir özellik ancak bu sitede
+yayımlanan ürün ve API dokümanında yer aldığında kullanılabilir kabul edilir.
 
-## Ön koşullar
+FaturaDev müşterinin özel entegratör seçimini veya sağlayıcıyla yaptığı
+sözleşmeyi değiştirmez. Bağlantı, müşterinin açıkça yetkilendirdiği hesap ve
+kapsamla sınırlıdır.
 
-- Entegrasyonu yapacak yazılım ve sorumlu teknik ekip,
-- yalnız sentetik veri kullanılacak bir test senaryosu,
-- bağlanılacak özel entegratörden alınmış test hesabı ve izin verilen capability bilgisi,
-- test edilecek tüzel kişi ile sağlayıcı hesabı arasındaki yetkinin doğrulanması,
-- asenkron sonuçları işleyecek sorgulama veya webhook tasarımı.
+## Özel entegratör ne sağlar?
 
-## İlk akış
+Yetkili özel entegratör; kendi sözleşmesi ve GİB yetkisi kapsamında mali imza,
+GİB iletimi, sağlayıcı hesabı ve mevzuata tabi işlemlerden sorumludur.
+FaturaDev bu görevleri üstlenmez ve müşterinin mali mühür ya da özel imza
+anahtarını almaz.
 
-<Steps>
-  <Step title="Sandbox sınırını belirleyin">
-    FaturaDev sandbox workspace'ini yalnız sağlayıcının test ortamına bağlayın. Test credential'ını production ortamında, production credential'ını sandbox ortamında kullanmayın.
-  </Step>
-  <Step title="Sağlayıcı bağlantısını doğrulayın">
-    Bir tüzel kişi için bir veya daha fazla özel entegratör bağlantısı tanımlanabilir. Her bağlantının ortamını, hesap sahibini ve desteklediği e-Belge capability'lerini ayrı ayrı doğrulayın.
-  </Step>
-  <Step title="Sentetik belge hazırlayın">
-    Gerçek VKN/TCKN, kişi bilgisi, adres, fatura, XML, PDF veya provider referansı kullanmayın. Örneğin format göstermesi gereken alanlarda `VKN_EXAMPLE_NOT_VALID` ve `document-0001@example.com` gibi açıkça geçersiz sentetik değerler kullanın.
-  </Step>
-  <Step title="İdempotency ve batch davranışını planlayın">
-    Aynı iş tekrarlandığında duplicate üretmeyecek bir idempotency anahtarı belirleyin. Bir batch 1.000 öğeye kadar dayanıklı biçimde kabul edilebilir; her öğe kendi durumuna ve hedef bağlantısının hız sınırına göre ilerler.
-  </Step>
-  <Step title="Kabul ile iletimi ayırın">
-    API'nin dayanıklı kabul cevabı, özel entegratör veya GİB kabulü değildir. Yayımlanacak OpenAPI sözleşmesindeki öğe bazlı durum ve olay akışından nihai sonucu izleyin.
-  </Step>
-</Steps>
+| Sorumluluk | FaturaDev | Yetkili özel entegratör |
+| --- | --- | --- |
+| Müşteri yazılımı için ortak API sözleşmesi | Evet | Sağlayıcıya özgü olabilir |
+| Özel entegratör hesabı ve ticari sözleşme | Hayır | Evet |
+| Mali mühür, e-imza veya XAdES | Hayır | Yetkili hizmet kapsamında |
+| GİB'e doğrudan belge iletimi | Hayır | Yetkili hizmet kapsamında |
+| Desteklenen operasyonların public sözleşmesi | FaturaDev API için | Sağlayıcı API'si için |
 
-## Geçmiş veriyle başlama
+## İstek yolu
 
-Mevcut XML veya ZIP arşiviniz varsa bunları sağlayıcı bağlantısından bağımsız, salt okunur geçmiş olarak içe aktarabilirsiniz. İçe aktarılan kaydın kaynağı korunur; kayıt otomatik gönderime açılmaz. Yeni bir gönderim gerekiyorsa ayrı bir taslak oluşturulur.
+```text
+Müşteri yazılımı
+      ↓
+FaturaDev public API
+      ↓
+Müşterinin yetkilendirdiği özel entegratör bağlantısı
+      ↓
+GİB — özel entegratörün sorumluluk alanı
+```
 
-## Sonraki adım
+Bu ayrım, FaturaDev'in “özel entegratör” veya “GİB'e doğrudan bağlı servis”
+olarak yorumlanmasını önler.
 
-API kimlik doğrulama modeli, endpoint'ler, örnek payload'lar ve hata sözleşmesi yalnız kanonik OpenAPI sürümü yayımlandığında bu sitedeki API referansına eklenecektir.
+## API dokümanı
+
+Kanonik OpenAPI sözleşmesi yayımlandığında bu sitedeki API Referansı sekmesi:
+
+- kullanılabilir endpoint ve request şemalarını,
+- kimlik doğrulama yöntemini,
+- hata ve idempotency sözleşmesini,
+- desteklenen e-Belge ve sağlayıcı capability'lerini,
+- test ve production ortam sınırlarını
+
+gösterecektir. Bu bilgiler yayımlanana kadar endpoint veya payload tahmin
+etmeyin.
 
 <Note>
-  Sağlayıcı test hesabı, capability veya ortam adresi hakkında güncel bilgi için ilgili sağlayıcının resmî kanalını kullanın. Doğrulanmamış portal ekranlarını veya üçüncü taraf örneklerini production sözleşmesi olarak kabul etmeyin.
+  Bir özel entegratörün test hesabı veya bağlantı koşulları için yalnız o
+  sağlayıcının resmî ve güncel public kanallarını kullanın. FaturaDev'de bir
+  sağlayıcı bağlantısı ancak public ürün dokümanında yayımlandığında
+  kullanılabilir kabul edilir.
 </Note>

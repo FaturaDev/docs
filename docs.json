@@ -1,69 +1,72 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
-  "name": "FaturaDev",
-  "description": "Çok sağlayıcılı e-Belge API, gateway ve orkestrasyon platformu.",
+  "theme": "almond",
+  "name": "FaturaDev Developers",
+  "description": "FaturaDev e-Belge gateway ve API dokümantasyonu",
   "colors": {
-    "primary": "#000000",
-    "light": "#FFFFFF",
-    "dark": "#737373"
-  },
-  "favicon": "/images/brand/fatura-icon.png",
-  "navigation": {
-    "pages": [
-      {
-        "group": "Başlangıç",
-        "pages": [
-          "index",
-          "quickstart"
-        ]
-      },
-      {
-        "group": "Proje",
-        "pages": [
-          "project/brand-assets"
-        ]
-      }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "GitHub",
-          "href": "https://github.com/FaturaDev",
-          "icon": "github"
-        }
-      ]
-    }
+    "primary": "#141414",
+    "light": "#FAFAFA",
+    "dark": "#141414"
   },
   "logo": {
-    "light": "/images/brand/fatura-type.svg",
+    "light": "/images/brand/fatura-icon.png",
     "dark": "/images/brand/fatura-icon.png",
-    "href": "https://fatura.dev"
+    "href": "/"
   },
-  "navbar": {
-    "links": [
-      {
-        "type": "github",
-        "href": "https://github.com/FaturaDev"
-      }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Uygulamaya git",
-      "href": "https://app.fatura.dev"
+  "favicon": "/images/brand/fatura-icon.png",
+  "seo": {
+    "metatags": {
+      "canonical": "https://fatura.dev"
     }
   },
+  "appearance": {
+    "default": "system",
+    "strict": false
+  },
+  "interaction": {
+    "drilldown": false
+  },
+  "styling": {
+    "eyebrows": "breadcrumbs",
+    "codeblocks": "system"
+  },
   "contextual": {
-    "options": [
-      "copy",
-      "view",
-      "chatgpt",
-      "claude",
-      "perplexity",
-      "mcp",
-      "cursor",
-      "vscode"
+    "options": ["copy", "view"]
+  },
+  "navigation": {
+    "languages": [
+      {
+        "language": "tr",
+        "default": true,
+        "tabs": [
+          {
+            "tab": "Dokümantasyon",
+            "icon": "book-open",
+            "groups": [
+              {
+                "group": "Genel Bakış",
+                "pages": ["index"]
+              },
+              {
+                "group": "Başlangıç",
+                "pages": ["quickstart"]
+              },
+              {
+                "group": "Kaynaklar",
+                "pages": ["project/brand-assets"]
+              }
+            ]
+          }
+        ]
+      }
     ]
+  },
+  "navbar": {
+    "primary": {
+      "type": "button",
+      "label": "Dokümantasyonu keşfet",
+      "href": "/quickstart"
+    }
   },
   "footer": {
     "socials": {

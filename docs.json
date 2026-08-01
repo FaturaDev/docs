@@ -72,10 +72,6 @@
                 ]
               },
               {
-                "group": "Kaynaklar",
-                "pages": ["project/brand-assets"]
-              },
-              {
                 "group": "e-Belge rehberleri",
                 "pages": [
                   "user-guide/e-documents/overview",
@@ -101,6 +97,10 @@
                 ]
               }
             ]
+          },
+          {
+            "tab": "Api Referansı",
+            "asyncapi": "https://api.fatura.dev/api/docs/json"
           }
         ]
       }
@@ -117,5 +117,8 @@
     "socials": {
       "github": "https://github.com/FaturaDev"
     }
+  },
+  "api": {
+    "asyncapi": "https://api.fatura.dev/api/docs/json"
   }
 }
